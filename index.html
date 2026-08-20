@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="فید رسمی پست‌های واقعی اینستاگرام روایت‌های ناتموم" />
+    <title>روایت‌های ناتموم | فید رسمی</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="روایت‌های ناتموم">
+        <span class="brand-mark">ر</span>
+        <span><strong>روایت‌های ناتموم</strong><small>@rivayat_natamoom2006</small></span>
+      </a>
+      <nav aria-label="پیوندهای اصلی">
+        <a href="#feed">فید رسمی</a>
+        <a class="instagram-link" href="https://www.instagram.com/rivayat_natamoom2006/" target="_blank" rel="noreferrer">اینستاگرام ↗</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow">فقط محتوای واقعیِ حساب رسمی</p>
+        <h1 id="hero-title">روایت‌های<br /><span>ناتموم</span></h1>
+        <p class="hero-copy">هر پستی که اینجا می‌بینید، مستقیماً از حساب رسمی اینستاگرام روایت‌های ناتموم ثبت شده است؛ نه تصویر ساختگی، نه متن آزمایشی.</p>
+      </section>
+
+      <section id="feed" class="feed-section" aria-labelledby="feed-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">@rivayat_natamoom2006</p>
+            <h2 id="feed-title">آخرین روایت‌ها</h2>
+          </div>
+          <p id="sync-status" class="sync-status" aria-live="polite">در حال دریافت فید رسمی…</p>
+        </div>
+        <div id="feed-grid" class="feed-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>روایت‌های ناتموم — فید رسمی اینستاگرام</p>
+      <a href="https://www.instagram.com/rivayat_natamoom2006/" target="_blank" rel="noreferrer">مشاهدهٔ حساب در اینستاگرام ↗</a>
+    </footer>
+
+    <dialog id="post-dialog" aria-labelledby="dialog-title">
+      <button id="close-dialog" class="close-button" aria-label="بستن">×</button>
+      <div id="dialog-media" class="dialog-media"></div>
+      <div class="dialog-content">
+        <p id="dialog-kind" class="eyebrow"></p>
+        <h2 id="dialog-title">پست اینستاگرام</h2>
+        <time id="dialog-date"></time>
+        <p id="dialog-caption"></p>
+        <a id="dialog-link" class="instagram-link" target="_blank" rel="noreferrer">دیدن در اینستاگرام ↗</a>
+      </div>
+    </dialog>
+
+    <template id="post-template">
+      <article class="post-card">
+        <button class="post-open" type="button">
+          <span class="media-frame"><img class="post-image" alt="" /><span class="media-label"></span></span>
+          <span class="post-content"><time class="post-date"></time><strong class="post-title"></strong><span class="post-caption"></span><span class="post-action">مشاهدهٔ روایت ←</span></span>
+        </button>
+      </article>
+    </template>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+  command = "echo 'Static site ready for Netlify'"
+
+[[headers]]
+  for = "/data/instagram-feed.json"
+  [headers.values]
+    Cache-Control = "public, max-age=300, s-maxage=300"
+

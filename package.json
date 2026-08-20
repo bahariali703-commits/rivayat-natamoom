@@ -1,0 +1,14 @@
+{
+  "name": "rivayat-natamoom",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "vitest run",
+    "sync:instagram": "node scripts/sync-instagram.mjs"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}
+
