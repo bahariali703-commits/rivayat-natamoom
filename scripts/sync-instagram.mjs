@@ -9,15 +9,28 @@ if (!accessToken || !userId) {
 }
 
 const fields = ['id', 'caption', 'media_type', 'media_product_type', 'media_url', 'thumbnail_url', 'permalink', 'timestamp', 'username'].join(',');
-const url = new URL(`https://graph.instagram.com/v26.0/${userId}/media`);
-url.searchParams.set('fields', fields);
-url.searchParams.set('limit', '12');
-url.searchParams.set('access_token', accessToken);
+const apiHosts = ['https://graph.instagram.com/v26.0', 'https://graph.facebook.com/v26.0'];
+const failures = [];
+let payload;
 
-const response = await fetch(url);
-if (!response.ok) throw new Error(`Instagram API request failed: ${response.status}`);
-const payload = await response.json();
+for (const apiHost of apiHosts) {
+  const url = new URL(`${apiHost}/${userId}/media`);
+  url.searchParams.set('fields', fields);
+  url.searchParams.set('limit', '12');
+  url.searchParams.set('access_token', accessToken);
+
+  const response = await fetch(url);
+  if (response.ok) {
+    payload = await response.json();
+    console.log(`Official Instagram feed read through ${new URL(apiHost).host}.`);
+    break;
+  }
+
+  const detail = (await response.text()).slice(0, 500);
+  failures.push(`${new URL(apiHost).host}: ${response.status} ${detail}`);
+}
+
+if (!payload) throw new Error(`Instagram API request failed. ${failures.join(' | ')}`);
 const feed = buildFeed(payload.data || []);
 await writeFile(new URL('../data/instagram-feed.json', import.meta.url), `${JSON.stringify(feed, null, 2)}\n`);
 console.log(`Synced ${feed.posts.length} real Instagram post(s).`);
-
