@@ -4,6 +4,23 @@ const template = document.querySelector('#post-template');
 const dialog = document.querySelector('#post-dialog');
 const closeDialog = document.querySelector('#close-dialog');
 
+const FEED = {
+  generatedAt: '2026-09-01T08:48:07+0000',
+  posts: [
+    {
+      id: '18147828451534938',
+      caption: 'غرب تهران شلوغ است؛ اما خرید مردم کمتر شده است.\n\nدر ستارخان، صادقیه و اکباتان، خیابان‌ها همچنان پررفت‌وآمدند؛ اما افزایش هزینه‌های زندگی، اجاره، خوراک و رفت‌وآمد، قدرت خرید بسیاری از مردم را کاهش داده است. شلوغی خیابان همیشه به معنی رونق خرید نیست.\n\nشما در محله‌تان فشار اقتصادی را بیشتر در کدام هزینه احساس می‌کنید؟ نام محله و تجربه‌تان را بنویسید.\n\n#غرب_تهران #ستارخان #صادقیه #اکباتان #جنت_آباد #تهرانسر #مرزداران #چیتگر #قدرت_خرید #گرانی #هزینه_زندگی #کاسبی #گزارش_مردمی #اقتصاد_خانوار #روایت_های_ناتموم',
+      mediaType: 'VIDEO',
+      productType: 'REELS',
+      permalink: 'https://www.instagram.com/reel/DcvRIWhDLmS/',
+      thumbnailUrl: 'assets/west-tehran-reel-cover.jpg',
+      mediaUrl: 'assets/west-tehran-reel.mp4',
+      timestamp: '2026-09-01T08:48:07+0000',
+      username: 'rivayat_natamoom2006'
+    }
+  ]
+};
+
 const toJalaliDate = (value) => new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
   day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Tehran'
 }).format(new Date(value));
@@ -67,17 +84,9 @@ function renderFeed(posts) {
   });
 }
 
-async function loadFeed() {
-  try {
-    const response = await fetch(`data/instagram-feed.json?ts=${Date.now()}`);
-    if (!response.ok) throw new Error('feed unavailable');
-    const feed = await response.json();
-    renderFeed(feed.posts);
-    status.textContent = `آخرین همگام‌سازی: ${toJalaliDate(feed.generatedAt)} — ${feed.posts.length} محتوای واقعی`;
-  } catch (error) {
-    status.textContent = 'فید رسمی در دسترس نیست؛ حساب اینستاگرام را ببینید.';
-    renderFeed([]);
-  }
+function loadFeed() {
+  renderFeed(FEED.posts);
+  status.textContent = `آخرین همگام‌سازی: ${toJalaliDate(FEED.generatedAt)} — ${FEED.posts.length} محتوای واقعی`;
 }
 
 closeDialog.addEventListener('click', () => dialog.close());
